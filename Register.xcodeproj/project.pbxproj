@@ -8,24 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		FF67E9042634902F001144ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF67E9032634902F001144ED /* AppDelegate.swift */; };
-		FF67E9062634902F001144ED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF67E9052634902F001144ED /* SceneDelegate.swift */; };
-		FF67E9082634902F001144ED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF67E9072634902F001144ED /* ViewController.swift */; };
+		FF67E9082634902F001144ED /* StudentsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF67E9072634902F001144ED /* StudentsListViewController.swift */; };
 		FF67E90B2634902F001144ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF67E9092634902F001144ED /* Main.storyboard */; };
-		FF67E90E2634902F001144ED /* Register.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF67E90C2634902F001144ED /* Register.xcdatamodeld */; };
 		FF67E91026349034001144ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF67E90F26349034001144ED /* Assets.xcassets */; };
 		FF67E91326349034001144ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF67E91126349034001144ED /* LaunchScreen.storyboard */; };
+		FF67E91E263491F7001144ED /* StudentSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF67E91D263491F7001144ED /* StudentSettingsViewController.swift */; };
+		FF67E928263493F4001144ED /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF67E927263493F4001144ED /* StorageManager.swift */; };
+		FF7914DD2636AB0A00DC4299 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7914DC2636AB0A00DC4299 /* Student.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FF67E9002634902F001144ED /* Register.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Register.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF67E9032634902F001144ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FF67E9052634902F001144ED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FF67E9072634902F001144ED /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FF67E9072634902F001144ED /* StudentsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsListViewController.swift; sourceTree = "<group>"; };
 		FF67E90A2634902F001144ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		FF67E90D2634902F001144ED /* Register.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Register.xcdatamodel; sourceTree = "<group>"; };
 		FF67E90F26349034001144ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF67E91226349034001144ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FF67E91426349034001144ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF67E91D263491F7001144ED /* StudentSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSettingsViewController.swift; sourceTree = "<group>"; };
+		FF67E927263493F4001144ED /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		FF7914DC2636AB0A00DC4299 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +60,65 @@
 		FF67E9022634902F001144ED /* Register */ = {
 			isa = PBXGroup;
 			children = (
-				FF67E9032634902F001144ED /* AppDelegate.swift */,
-				FF67E9052634902F001144ED /* SceneDelegate.swift */,
-				FF67E9072634902F001144ED /* ViewController.swift */,
-				FF67E9092634902F001144ED /* Main.storyboard */,
-				FF67E90F26349034001144ED /* Assets.xcassets */,
-				FF67E91126349034001144ED /* LaunchScreen.storyboard */,
-				FF67E91426349034001144ED /* Info.plist */,
-				FF67E90C2634902F001144ED /* Register.xcdatamodeld */,
+				FF67E92A26349437001144ED /* Services */,
+				FF67E92026349291001144ED /* ViewControllers */,
+				FF67E92226349304001144ED /* Storyboards */,
+				FF67E921263492C6001144ED /* Source */,
+				FF67E92426349369001144ED /* SupportingFiles */,
+				FF7914E02636ADAD00DC4299 /* Model */,
 			);
 			path = Register;
+			sourceTree = "<group>";
+		};
+		FF67E92026349291001144ED /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				FF67E9072634902F001144ED /* StudentsListViewController.swift */,
+				FF67E91D263491F7001144ED /* StudentSettingsViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		FF67E921263492C6001144ED /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				FF67E90F26349034001144ED /* Assets.xcassets */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		FF67E92226349304001144ED /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				FF67E9092634902F001144ED /* Main.storyboard */,
+				FF67E91126349034001144ED /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		FF67E92426349369001144ED /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				FF67E9032634902F001144ED /* AppDelegate.swift */,
+				FF67E91426349034001144ED /* Info.plist */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		FF67E92A26349437001144ED /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				FF67E927263493F4001144ED /* StorageManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		FF7914E02636ADAD00DC4299 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FF7914DC2636AB0A00DC4299 /* Student.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,10 +191,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF67E9082634902F001144ED /* ViewController.swift in Sources */,
+				FF67E91E263491F7001144ED /* StudentSettingsViewController.swift in Sources */,
+				FF7914DD2636AB0A00DC4299 /* Student.swift in Sources */,
+				FF67E9082634902F001144ED /* StudentsListViewController.swift in Sources */,
+				FF67E928263493F4001144ED /* StorageManager.swift in Sources */,
 				FF67E9042634902F001144ED /* AppDelegate.swift in Sources */,
-				FF67E90E2634902F001144ED /* Register.xcdatamodeld in Sources */,
-				FF67E9062634902F001144ED /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,7 +344,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QZLVH79HKK;
-				INFOPLIST_FILE = Register/Info.plist;
+				INFOPLIST_FILE = Register/SupportingFiles/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -311,7 +364,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QZLVH79HKK;
-				INFOPLIST_FILE = Register/Info.plist;
+				INFOPLIST_FILE = Register/SupportingFiles/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -345,19 +399,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		FF67E90C2634902F001144ED /* Register.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				FF67E90D2634902F001144ED /* Register.xcdatamodel */,
-			);
-			currentVersion = FF67E90D2634902F001144ED /* Register.xcdatamodel */;
-			path = Register.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = FF67E8F82634902F001144ED /* Project object */;
 }
