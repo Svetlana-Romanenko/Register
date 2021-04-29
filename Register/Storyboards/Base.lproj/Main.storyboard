@@ -76,13 +76,6 @@
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ygH-s3-igg">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Title" id="tFM-PQ-a5e"/>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6yS-jh-NSd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -97,8 +90,6 @@
                         <outlet property="firstNameTextField" destination="o5T-qJ-Uah" id="e4h-VX-enb"/>
                         <outlet property="lastNameTextField" destination="80V-Wi-Ur2" id="L2R-jD-7Nd"/>
                         <outlet property="markTextField" destination="RfH-gI-fTf" id="hcR-NB-wZs"/>
-                        <outlet property="navBar" destination="tFM-PQ-a5e" id="AaV-Wz-x2C"/>
-                        <outlet property="navigationItem" destination="tFM-PQ-a5e" id="w1I-Yb-hcg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9zr-qg-vkn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

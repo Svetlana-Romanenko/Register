@@ -12,11 +12,10 @@ class StudentSettingsViewController: UIViewController {
     @IBOutlet var firstNameTextField: UITextField!
     @IBOutlet var lastNameTextField: UITextField!
     @IBOutlet var markTextField: UITextField!
-    @IBOutlet var navBar: UINavigationItem!
     
     var result: Student!
-    var titleBar: String!
-    var delegate: StudentSettingsViewControllerDelegate?
+    var titleBar: String?
+    var delegate: StudentSettingsViewControllerDelegate!
     var indexStudent: Int!
     
     override func viewDidLoad() {
@@ -34,23 +33,23 @@ class StudentSettingsViewController: UIViewController {
             action: #selector(saveSettings)
         )
         
+        title = titleBar
+        
         if result != nil {
         firstNameTextField.text = result.firstName
         lastNameTextField.text = result.lastName
         markTextField.text = "\(result.mark)"
         }
-        
-        navBar.title = titleBar
     }
     
     @objc private func saveSettings() {
-        switch navBar.title {
-        case titleNavBar.add.rawValue:
-            saveAndExit()
-        case titleNavBar.edit.rawValue:
+        if titleBar == titleNavBar.edit.rawValue {
             editAndExit(index: indexStudent)
-        default: break
+        } else {
+            saveAndExit()
         }
+        
+        navigationController?.popViewController(animated: true)
     }
     
     @objc private func firstNameTextFieldDidChanged() {
@@ -59,59 +58,32 @@ class StudentSettingsViewController: UIViewController {
     }
     
     private func saveAndExit() {
-        guard
-            firstNameTextField.text != nil &&
-            !firstNameTextField.text!.isEmpty &&
-            !firstNameTextField.text!.contains(" ") else {
-            showAlert(title: "Wrong format", message: "Please enter correct name")
-            firstNameTextField.text = ""
-            return
-        }
-        guard
-            lastNameTextField.text != nil &&
-            !lastNameTextField.text!.isEmpty &&
-            !lastNameTextField.text!.contains(" ")
-        else {
-            showAlert(title: "Wrong format", message: "Please enter correct surname")
-            lastNameTextField.text = ""
-            return
-        }
-        guard markTextField.text != nil  else {
-            showAlert(title: "Wrong format", message: "Please enter mark")
-            markTextField.text = ""
-            return
-        }
-        guard let mark = Int(markTextField.text!) else {
-            showAlert(title: "Wrong format", message: "Please enter integer format of mark")
-            markTextField.text = ""
-            return
-        }
+        chekTF()
         
-        guard mark>=1 && mark<=5 else {
-            showAlert(title: "Wrong format", message: "Please enter correct mark")
-            markTextField.text = ""
-            return
-        }
         let firstName = firstNameTextField.text
         let lastName = lastNameTextField.text
+        let mark = Int(markTextField.text ?? "")
         
-        let student = Student(firstName: firstName!, lastName: lastName!, mark: mark)
+        let student = Student(firstName: firstName!, lastName: lastName!, mark: mark!)
         StorageManager.shared.save(student: student)
         
         delegate?.saveStudent(student)
-        dismiss(animated: true)
     }
     
     private func editAndExit(index: Int) {
+        chekTF()
+        
         guard let firstName = firstNameTextField.text else { return }
         guard let lastName = lastNameTextField.text else { return }
         guard let mark = markTextField.text else { return }
         
-        let student = Student(firstName: firstName, lastName: lastName, mark: Int(mark) ?? 0)
-        StorageManager.shared.edit(at: index, student: student)
+        result.firstName = firstName
+        result.lastName = lastName
+        result.mark = Int(mark) ?? 0
         
-        delegate?.saveStudent(result)
-        dismiss(animated: true)
+        StorageManager.shared.edit(at: index, student: result)
+        
+        delegate?.editStudent(result, index)
     }
 }
 
@@ -133,5 +105,44 @@ extension StudentSettingsViewController {
         alert.addAction(okAction)
         
         present(alert, animated: true)
+    }
+    
+    private func chekTF() {
+        // Проверка на пустые поля
+        guard
+            firstNameTextField.text != nil &&
+            !firstNameTextField.text!.isEmpty &&
+            lastNameTextField.text != nil &&
+            !lastNameTextField.text!.isEmpty &&
+            markTextField.text != nil &&
+            !markTextField.text!.isEmpty
+        else {
+            showAlert(title: "Не все поля заполнены", message: "Для сохранения данных необходимо заполнить все поля")
+            return
+        }
+        
+        // Проверка значения оценки
+        guard
+            Int(markTextField.text!) != nil
+            && Int(markTextField.text!)! >= 1
+            && Int(markTextField.text!)! <= 5
+        else {
+            showAlert(title: "Неправильно указана оценка", message: "Необходимо указать цифровое значение от 1 до 5")
+            markTextField.text = ""
+            return
+        }
+        
+        // Проверка значения имени и фамилии на цифры и пробелы
+        guard
+            firstNameTextField.text!.contains(" ") &&
+            lastNameTextField.text!.contains(" ") &&
+            firstNameTextField.text!.contains("\(CharacterSet.decimalDigits)") &&
+            lastNameTextField.text!.contains("\(CharacterSet.decimalDigits)")
+        else {
+            showAlert(title: "Неправильно указано имя или фамилия", message: "Укажите корректные имя и фамилию")
+            firstNameTextField.text = ""
+            lastNameTextField.text = ""
+            return
+        }
     }
 }

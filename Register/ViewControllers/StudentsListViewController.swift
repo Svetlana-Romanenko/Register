@@ -14,6 +14,7 @@ enum titleNavBar: String {
 
 protocol StudentSettingsViewControllerDelegate {
     func saveStudent(_ student: Student)
+    func editStudent(_ student: Student, _ index: Int)
 }
 
 class StudentsListViewController: UITableViewController {
@@ -34,6 +35,7 @@ class StudentsListViewController: UITableViewController {
             studentSettingsVC.result = students[indexPath?.row ?? 0]
             studentSettingsVC.indexStudent = indexPath?.row
             studentSettingsVC.titleBar = titleNavBar.edit.rawValue
+            studentSettingsVC.delegate = self
         } else {
             let studentAdditingVC = segue.destination as! StudentSettingsViewController
             studentAdditingVC.delegate = self
@@ -78,8 +80,14 @@ class StudentsListViewController: UITableViewController {
 
 extension StudentsListViewController: StudentSettingsViewControllerDelegate {
     func saveStudent(_ student: Student) {
-    students.append(student)
-    tableView.reloadData()
+        students.append(student)
+        tableView.reloadData()
+    }
+    
+    func editStudent(_ student: Student, _ index: Int) {
+        students.append(student)
+        students.remove(at: index)
+        tableView.reloadData()
     }
 }
 
