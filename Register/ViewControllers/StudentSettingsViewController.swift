@@ -58,7 +58,7 @@ class StudentSettingsViewController: UIViewController {
     }
     
     private func saveAndExit() {
-        chekTF()
+        if chekTF() {
         
         let firstName = firstNameTextField.text
         let lastName = lastNameTextField.text
@@ -68,10 +68,11 @@ class StudentSettingsViewController: UIViewController {
         StorageManager.shared.save(student: student)
         
         delegate?.saveStudent(student)
+        } else { return }
     }
     
     private func editAndExit(index: Int) {
-        chekTF()
+        if chekTF() {
         
         guard let firstName = firstNameTextField.text else { return }
         guard let lastName = lastNameTextField.text else { return }
@@ -84,6 +85,7 @@ class StudentSettingsViewController: UIViewController {
         StorageManager.shared.edit(at: index, student: result)
         
         delegate?.editStudent(result, index)
+        } else { return }
     }
 }
 
@@ -107,7 +109,7 @@ extension StudentSettingsViewController {
         present(alert, animated: true)
     }
     
-    private func chekTF() {
+    private func chekTF() -> Bool {
         // Проверка на пустые поля
         guard
             firstNameTextField.text != nil &&
@@ -118,7 +120,7 @@ extension StudentSettingsViewController {
             !markTextField.text!.isEmpty
         else {
             showAlert(title: "Не все поля заполнены", message: "Для сохранения данных необходимо заполнить все поля")
-            return
+            return false
         }
         
         // Проверка значения оценки
@@ -129,7 +131,7 @@ extension StudentSettingsViewController {
         else {
             showAlert(title: "Неправильно указана оценка", message: "Необходимо указать цифровое значение от 1 до 5")
             markTextField.text = ""
-            return
+            return false
         }
         
         // Проверка значения имени и фамилии на цифры и пробелы
@@ -142,7 +144,8 @@ extension StudentSettingsViewController {
             showAlert(title: "Неправильно указано имя или фамилия", message: "Укажите корректные имя и фамилию")
             firstNameTextField.text = ""
             lastNameTextField.text = ""
-            return
+            return false
         }
+        return true
     }
 }
